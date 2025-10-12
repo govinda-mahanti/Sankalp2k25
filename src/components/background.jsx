@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import background from '../assets/background.mp4'
+import sankalpLogo from '../assets/sankalp.png';
+import sankalp2Logo from '../assets/sankalp2.png';
 
 const Background = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
@@ -25,7 +28,7 @@ const Background = () => {
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
         <video 
-          src="/src/assets/background.mp4"
+          src={background}
           autoPlay
           loop
           muted
@@ -127,7 +130,7 @@ const Background = () => {
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-40' : 'opacity-0'}`}>
             <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
               <img 
-                src="/src/assets/sankalp2.png"
+                src={sankalp2Logo}
                 alt="Decorative Border"
                 className="min-w-full min-h-full object-cover"
                 style={{ 
@@ -144,7 +147,7 @@ const Background = () => {
           {/* Main Chakra Logo - sankalp.png (center circular part) */}
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <img 
-              src="/src/assets/sankalp.png"
+              src={sankalpLogo}
               alt="Sankalp Chakra"
               className="w-[280px] h-[280px] md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] object-contain"
               style={{ 
