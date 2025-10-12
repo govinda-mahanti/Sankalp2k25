@@ -193,10 +193,6 @@ const Explore = () => {
 
         {/* Scrolling Container with enhanced cards */}
         <div className="relative">
-          {/* Fade edges */}
-                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
-
           <div className="overflow-visible py-12">
             <div className="flex gap-6 animate-scroll hover:animation-paused">
               {duplicatedCategories.map((category, index) => (
