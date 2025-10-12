@@ -16,6 +16,11 @@ export default {
         'phone-ring': 'phoneRing 2s ease-in-out infinite',
         'particle-drift': 'particleDrift 15s ease-in-out infinite',
         'sparkle': 'sparkleAnim 2s ease-in-out infinite',
+        'scan': 'scan 2s ease-in-out infinite',
+        'shimmer': 'shimmer 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
+        'slide-up': 'slideUp 0.6s ease-out backwards',
       },
       keyframes: {
         fadeInDown: {
@@ -59,6 +64,46 @@ export default {
           '0%': { opacity: '0', transform: 'scale(0) rotate(0deg)' },
           '50%': { opacity: '1', transform: 'scale(1.5) rotate(180deg)' },
           '100%': { opacity: '0', transform: 'scale(0) rotate(360deg)' },
+        },
+        scan: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(251, 146, 60, 0.5)' },
+          '50%': { boxShadow: '0 0 40px rgba(251, 146, 60, 0.8), 0 0 60px rgba(251, 146, 60, 0.4)' },
+        },
+        slideUp: {
+          'from': { opacity: '0', transform: 'translateY(40px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'border-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        wave: {
+          '0%, 100%': { transform: 'translateX(-50%) translateY(0)' },
+          '50%': { transform: 'translateX(-50%) translateY(-10px)' },
+        },
+        'gradient-shift': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        ripple: {
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '100%': { transform: 'scale(4)', opacity: '0' },
+        },
+        'text-shimmer': {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
         },
       },
     },
