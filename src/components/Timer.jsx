@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import sankalpLogo from '/src/assets/sankalp.png';
+import sankalpLogo from '/src/assets/timechakra.png';
 
 const Timer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -80,39 +80,50 @@ const Timer = () => {
           SANKALP 2025-26
         </h1>
 
-        {/* Desktop Layout - Exactly like before */}
-        <div className="hidden md:flex items-center justify-center gap-6 md:gap-12">
+        {/* Desktop Layout */}
+        <div className="hidden md:flex items-center justify-center gap-6 md:gap-12 relative">
           <TimerUnit value={timeLeft.days} label="DAYS" />
           <TimerUnit value={timeLeft.hours} label="HOURS" />
           
-          {/* Center Logo */}
-          <div className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center mx-4">
+          {/* Spacer for center logo */}
+          <div className="w-48 h-48 md:w-56 md:h-56"></div>
+
+          <TimerUnit value={timeLeft.minutes} label="MINUTES" />
+          <TimerUnit value={timeLeft.seconds} label="SECONDS" />
+
+          {/* Center Logo - Absolutely positioned to not affect layout */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[600px] md:h-[600px] flex items-center justify-center pointer-events-none">
             <div className="absolute inset-0 bg-amber-500/20 blur-2xl rounded-full animate-pulse"></div>
             <img 
               src={sankalpLogo}
               alt="SANKALP Logo" 
-              className="relative w-full h-full object-contain animate-spin-slow drop-shadow-2xl"
+              className="relative w-full h-full object-contain drop-shadow-2xl"
+              style={{ 
+                filter: 'brightness(1.2) contrast(1.3)',
+                mixBlendMode: 'multiply'
+              }}
             />
           </div>
-
-          <TimerUnit value={timeLeft.minutes} label="MINUTES" />
-          <TimerUnit value={timeLeft.seconds} label="SECONDS" />
         </div>
 
         {/* Mobile Layout - Compact and Clean */}
-        <div className="md:hidden flex flex-col items-center w-full max-w-sm">
-          {/* Logo on top for mobile */}
-          <div className="relative w-32 h-32 flex items-center justify-center mb-8">
+        <div className="md:hidden flex flex-col items-center w-full max-w-sm relative">
+          {/* Logo on top for mobile - Absolutely positioned */}
+          <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-60 h-60 flex items-center justify-center pointer-events-none z-10">
             <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full animate-pulse"></div>
             <img 
               src={sankalpLogo}
               alt="SANKALP Logo" 
-              className="relative w-full h-full object-contain animate-spin-slow"
+              className="relative w-full h-full object-contain"
+              style={{ 
+                filter: 'brightness(1.2) contrast(1.3)',
+                mixBlendMode: 'multiply'
+              }}
             />
           </div>
 
           {/* Timer units in grid for mobile */}
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-4 w-full mt-8">
             <div className="flex justify-center">
               <TimerUnit value={timeLeft.days} label="DAYS" isMobile={true} />
             </div>
