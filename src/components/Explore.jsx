@@ -17,28 +17,28 @@ const Explore = () => {
     {
       title: 'CULTURAL',
       description: 'Dance, Music & Arts',
-      image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-orange-500 to-yellow-600',
       icon: '🎭'
     },
     {
       title: 'EVENTS',
       description: 'Workshops & Seminars',
-      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-red-500 to-pink-600',
       icon: '🎪'
     },
     {
       title: 'GAMES',
       description: 'Sports & Competitions',
-      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-purple-500 to-pink-500',
       icon: '🎮'
     },
     // {
     //   title: 'HACKATHON',
     //   description: 'Code, Build & Innovate',
-    //   image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&h=800&fit=crop',
+    //   image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop&auto=format&q=75',
     //   gradient: 'from-cyan-500 to-blue-600',
     //   isLarge: true,
     //   icon: '💻'
@@ -46,21 +46,21 @@ const Explore = () => {
     {
       title: 'PROSHOWS',
       description: 'Celebrity Performances',
-      image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-yellow-600 to-orange-700',
       icon: '⭐'
     },
     {
       title: 'CULTURAL',
       description: 'Dance, Music & Arts',
-      image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-orange-500 to-yellow-600',
       icon: '🎭'
     },
     {
       title: 'EVENTS',
       description: 'Workshops & Seminars',
-      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=600&fit=crop&auto=format&q=75',
       gradient: 'from-red-500 to-pink-600',
       icon: '🎪'
     },
@@ -76,24 +76,8 @@ const Explore = () => {
   };
 
   useEffect(() => {
-    const preloadImages = () => {
-      const imagePromises = duplicatedCategories.map(category => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = category.image;
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-      });
-
-      Promise.all(imagePromises)
-        .then(() => {
-          setIsLoading(false);
-        })
-        .catch(() => setIsLoading(false));
-    };
-
-    preloadImages();
+    // Skip preloading entirely - let browser handle it with native lazy loading
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
@@ -265,7 +249,8 @@ const Explore = () => {
                     <img
                       src={category.image}
                       alt={category.title}
-                      loading="lazy"
+                      loading={index < 2 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
                       className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-125 ${isActive && isTouchDevice ? 'scale-125' : ''}`}
                       style={{
                         transform: 'translateZ(0)',
