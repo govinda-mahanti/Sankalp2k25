@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import background from '../assets/background.mp4'
+import sankalpLogo from '../assets/sankalp.png';
+import sankalp2Logo from '../assets/sankalp2.png';
 
 const Background = () => {
   const [logoLoaded, setLogoLoaded] = useState(false);
@@ -7,15 +11,15 @@ const Background = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = '/src/assets/sankalp.png';
+    img.src = sankalpLogo;
     img.onload = () => setLogoLoaded(true);
   }, []);
 
   const navLinks = [
-    { href: '#home', label: 'HOME', active: true },
-    { href: '#events', label: 'EVENTS' },
-    { href: '#teams', label: 'TEAMS' },
-    { href: '#contact', label: 'CONTACT US' }
+    { href: '#home', label: 'HOME', active: true, isRoute: false },
+    { href: '#events', label: 'EVENTS', isRoute: false },
+    { href: '#teams', label: 'TEAMS', isRoute: false },
+    { href: '/contact', label: 'CONTACT US', isRoute: true }
   ];
 
   return (
@@ -24,7 +28,7 @@ const Background = () => {
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
         <video 
-          src="/src/assets/background.mp4"
+          src={background}
           autoPlay
           loop
           muted
@@ -50,9 +54,9 @@ const Background = () => {
         <a href="#teams" className="text-amber-100 text-sm font-light tracking-wider hover:text-amber-400 transition-colors">
           TEAMS
         </a>
-        <a href="#contact" className="text-amber-100 text-sm font-light tracking-wider hover:text-amber-400 transition-colors">
+        <Link to="/contact" className="text-amber-100 text-sm font-light tracking-wider hover:text-amber-400 transition-colors">
           CONTACT US
-        </a>
+        </Link>
       </nav>
 
       {/* Navigation - Mobile */}
@@ -78,18 +82,33 @@ const Background = () => {
       }`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`text-2xl font-light tracking-widest transition-colors ${
-                link.active 
-                  ? 'text-amber-400 font-semibold' 
-                  : 'text-amber-100 hover:text-amber-400'
-              }`}
-            >
-              {link.label}
-            </a>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-2xl font-light tracking-widest transition-colors ${
+                  link.active
+                    ? 'text-amber-400 font-semibold'
+                    : 'text-amber-100 hover:text-amber-400'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-2xl font-light tracking-widest transition-colors ${
+                  link.active
+                    ? 'text-amber-400 font-semibold'
+                    : 'text-amber-100 hover:text-amber-400'
+                }`}
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </div>
 
@@ -111,7 +130,7 @@ const Background = () => {
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-40' : 'opacity-0'}`}>
             <div className="relative flex items-center justify-center">
               <img 
-                src="/src/assets/sankalp2.png"
+                src={sankalp2Logo}
                 alt="Decorative Border"
                 className="w-[400px] h-[400px] md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] object-contain"
                 style={{ 
@@ -128,7 +147,7 @@ const Background = () => {
           {/* Main Chakra Logo */}
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <img 
-              src="/src/assets/sankalp.png"
+              src={sankalpLogo}
               alt="Sankalp Chakra"
               className="w-[280px] h-[280px] md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] object-contain"
               style={{ 
