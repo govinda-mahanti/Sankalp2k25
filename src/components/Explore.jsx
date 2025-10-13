@@ -2,6 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 const Explore = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [activeCard, setActiveCard] = useState(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouchDevice();
+  }, []);
 
   const categories = [
     {
@@ -57,6 +67,13 @@ const Explore = () => {
   ];
 
   const duplicatedCategories = [...categories, ...categories];
+
+  // Handle card click for touch devices
+  const handleCardClick = (index) => {
+    if (isTouchDevice) {
+      setActiveCard(activeCard === index ? null : index);
+    }
+  };
 
   useEffect(() => {
     const preloadImages = () => {
@@ -185,7 +202,8 @@ const Explore = () => {
           {/* Scroll indicator */}
           <div className="mt-6 md:mt-8 flex justify-center opacity-50 hover:opacity-100 transition-opacity">
             <div className="flex items-center gap-2 text-xs md:text-sm text-orange-400 animate-pulse">
-              <span>Scroll to explore</span>
+              <span className="hidden md:inline">Scroll to explore</span>
+              <span className="md:hidden">Tap to explore</span>
               <span className="text-lg md:text-xl">→</span>
             </div>
           </div>
@@ -194,14 +212,23 @@ const Explore = () => {
         {/* Scrolling Container with enhanced cards */}
         <div className="relative">
           <div className="overflow-visible py-8 md:py-12">
-            <div className="flex gap-3 sm:gap-4 md:gap-6 animate-scroll hover:animation-paused">
-              {duplicatedCategories.map((category, index) => (
+            <div
+              className="flex gap-3 sm:gap-4 md:gap-6 animate-scroll hover:animation-paused"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                scrollBehavior: 'smooth'
+              }}
+            >
+              {duplicatedCategories.map((category, index) => {
+                const isActive = activeCard === index;
+                return (
                 <div
                   key={index}
+                  onClick={() => handleCardClick(index)}
                   className={`group relative flex-shrink-0 rounded-2xl md:rounded-3xl overflow-visible cursor-pointer transform transition-all duration-700 ${
                     category.isLarge
-                      ? 'w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[350px] sm:h-[400px] md:h-[450px] hover:scale-105 md:hover:scale-110 hover:-translate-y-3 md:hover:-translate-y-6 active:scale-105 active:-translate-y-3'
-                      : 'w-[180px] sm:w-[220px] md:w-[250px] h-[350px] sm:h-[400px] md:h-[450px] hover:w-[280px] sm:hover:w-[350px] md:hover:w-[500px] hover:scale-105 hover:-translate-y-3 md:hover:-translate-y-6 active:w-[280px] active:scale-105 active:-translate-y-3'
+                      ? `w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[350px] sm:h-[400px] md:h-[450px] hover:scale-105 md:hover:scale-110 hover:-translate-y-3 md:hover:-translate-y-6 ${isActive && isTouchDevice ? 'scale-105 -translate-y-3' : ''}`
+                      : `w-[180px] sm:w-[220px] md:w-[250px] h-[350px] sm:h-[400px] md:h-[450px] hover:w-[280px] sm:hover:w-[350px] md:hover:w-[500px] hover:scale-105 hover:-translate-y-3 md:hover:-translate-y-6 ${isActive && isTouchDevice ? '!w-[280px] scale-105 -translate-y-3' : ''}`
                   }`}
                   style={{
                     transformStyle: 'preserve-3d',
@@ -209,7 +236,7 @@ const Explore = () => {
                   }}
                 >
                   {/* Animated rotating border */}
-                  <div className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className={`absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isActive && isTouchDevice ? 'opacity-100' : ''}`}>
                     <div className="absolute inset-0 rounded-3xl overflow-hidden">
                       <div className={`absolute inset-[-100%] bg-gradient-to-r ${category.gradient}`}
                         style={{
@@ -221,15 +248,15 @@ const Explore = () => {
                   </div>
 
                   {/* Floating outer glow */}
-                  <div className={`absolute -inset-1 bg-gradient-to-br ${category.gradient} rounded-3xl opacity-0 group-hover:opacity-60 blur-xl transition-all duration-700`} />
+                  <div className={`absolute -inset-1 bg-gradient-to-br ${category.gradient} rounded-3xl opacity-0 group-hover:opacity-60 blur-xl transition-all duration-700 ${isActive && isTouchDevice ? 'opacity-60' : ''}`} />
 
                   {/* Ripple effect on hover */}
                   <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                    <div className={`absolute top-1/2 left-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r ${category.gradient} rounded-full opacity-0 group-hover:opacity-30 group-hover:animate-[ripple_1s_ease-out]`} />
+                    <div className={`absolute top-1/2 left-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r ${category.gradient} rounded-full opacity-0 group-hover:opacity-30 group-hover:animate-[ripple_1s_ease-out] ${isActive && isTouchDevice ? 'opacity-30 animate-[ripple_1s_ease-out]' : ''}`} />
                   </div>
 
                   {/* Card border */}
-                  <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-orange-500/40 transition-all duration-500 z-20" />
+                  <div className={`absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-orange-500/40 transition-all duration-500 z-20 ${isActive && isTouchDevice ? 'border-orange-500/40' : ''}`} />
 
                   {/* Main card content */}
                   <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-3xl overflow-hidden">
@@ -239,7 +266,7 @@ const Explore = () => {
                       src={category.image}
                       alt={category.title}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-125"
+                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-125 ${isActive && isTouchDevice ? 'scale-125' : ''}`}
                       style={{
                         transform: 'translateZ(0)',
                         transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)'
@@ -332,7 +359,7 @@ const Explore = () => {
                     </div>
 
                     {/* Icon badge */}
-                    <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
+                    <div className={`absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100 ${isActive && isTouchDevice ? 'opacity-100 scale-100' : ''}`}>
                       <div className="bg-gradient-to-br from-orange-500 to-yellow-500 w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-2xl animate-float">
                         {category.icon}
                       </div>
@@ -371,7 +398,7 @@ const Explore = () => {
 
                     {/* Content Container */}
                     <div className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-8 z-10`}>
-                      <div className={`text-center transition-all duration-700 -rotate-90 group-hover:rotate-0`}>
+                      <div className={`text-center transition-all duration-700 -rotate-90 group-hover:rotate-0 ${isActive && isTouchDevice ? 'rotate-0' : ''}`}>
                         {/* Title with letter animation */}
                         <h2 className={`font-black text-white tracking-wider mb-1 md:mb-2 transition-all duration-700 ${
                           category.isLarge
@@ -395,18 +422,18 @@ const Explore = () => {
                         {/* Description - show on hover */}
                         <p className={`text-orange-400 font-semibold tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-700 ${
                           category.isLarge ? 'text-sm sm:text-base md:text-lg lg:text-xl' : 'text-xs sm:text-sm md:text-base lg:text-lg'
-                        }`}>
+                        } ${isActive && isTouchDevice ? 'opacity-100 translate-y-0' : ''}`}>
                           {category.description}
                         </p>
 
                         {/* Decorative line on hover */}
-                        <div className="mt-2 md:mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
+                        <div className={`mt-2 md:mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 ${isActive && isTouchDevice ? 'opacity-100' : ''}`}>
                           <div className="w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
                         </div>
 
                         {/* Additional info for expanded small cards */}
                         {!category.isLarge && (
-                          <div className="mt-2 md:mt-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
+                          <div className={`mt-2 md:mt-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 ${isActive && isTouchDevice ? 'opacity-100' : ''}`}>
                             <div className="flex items-center justify-center gap-1.5 md:gap-2 text-xs sm:text-sm text-gray-400">
                               <span className="text-lg md:text-2xl">{category.icon}</span>
                               <span className="tracking-wide">Explore Now</span>
@@ -425,9 +452,24 @@ const Explore = () => {
                   </div>
 
                   {/* External bottom glow */}
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-10 bg-gradient-to-r from-transparent via-orange-500/40 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-full" />
+                  <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-10 bg-gradient-to-r from-transparent via-orange-500/40 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-full ${isActive && isTouchDevice ? 'opacity-100' : ''}`} />
+
+                  {/* Touch Tap Indicator - Only visible on touch devices when not active */}
+                  {isTouchDevice && !isActive && (
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
+                      <div className="relative flex items-center justify-center">
+                        <div className="absolute w-12 h-12 rounded-full bg-orange-500/30 animate-ping" />
+                        <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center shadow-lg">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
         </div>
