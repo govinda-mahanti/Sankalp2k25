@@ -11,7 +11,7 @@ const Background = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = '/src/assets/sankalp.png';
+    img.src = sankalpLogo;
     img.onload = () => setLogoLoaded(true);
   }, []);
 

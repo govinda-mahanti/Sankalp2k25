@@ -7,21 +7,21 @@ const ContactUs = () => {
       position: "President",
       name: "Suvam Mishra",
       phone: "7894409607",
-      icon: "👑"
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces"
     },
     {
       id: 2,
       position: "Secretary",
       name: "Faizan Ahmed",
       phone: "7909045539",
-      icon: "📋"
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces"
     },
     {
       id: 3,
       position: "Treasurer",
       name: "Soumyashree Rath",
       phone: "7205852774",
-      icon: "💰"
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=faces"
     }
   ];
 
@@ -161,11 +161,16 @@ const ContactUs = () => {
                 }}
               />
 
-              {/* Icon with ring */}
+              {/* Profile Image with ring */}
               <div className="relative inline-block mb-6">
-                <div className="absolute top-1/2 left-1/2 w-24 h-24 border-2 border-amber-500 rounded-full -translate-x-1/2 -translate-y-1/2 animate-ring-pulse shadow-[0_0_20px_rgba(255,183,0,0.6),inset_0_0_20px_rgba(255,183,0,0.3)]" />
-                <div className="relative z-[2] text-6xl animate-icon-float drop-shadow-[0_0_25px_rgba(255,183,0,0.8)]">
-                  {contact.icon}
+                <div className="absolute top-1/2 left-1/2 w-32 h-32 border-2 border-amber-500 rounded-full -translate-x-1/2 -translate-y-1/2 animate-ring-pulse shadow-[0_0_20px_rgba(255,183,0,0.6),inset_0_0_20px_rgba(255,183,0,0.3)]" />
+                <div className="relative z-[2] w-28 h-28 rounded-full overflow-hidden border-4 border-amber-500/50 shadow-[0_0_30px_rgba(255,183,0,0.7),inset_0_0_20px_rgba(0,0,0,0.4)] animate-icon-float">
+                  <img
+                    src={contact.image}
+                    alt={`${contact.name} - ${contact.position}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-amber-500/20 group-hover:to-amber-500/40 transition-all duration-500" />
                 </div>
               </div>
 

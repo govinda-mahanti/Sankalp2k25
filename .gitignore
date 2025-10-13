@@ -23,6 +23,7 @@ build/
 *.njsproj
 *.sln
 *.sw?
+.claude
 
 # Mac & system files
 .DS_Store
