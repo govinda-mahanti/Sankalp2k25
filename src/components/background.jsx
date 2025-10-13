@@ -19,7 +19,7 @@ const Background = () => {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full min-h-screen overflow-hidden bg-black">
       
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
@@ -104,16 +104,16 @@ const Background = () => {
       </div>
 
       {/* Central Logo Area */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
+      <div className="absolute inset-0 flex items-center justify-center z-10 pb-16 md:pb-0">
         <div className="relative w-full h-full flex items-center justify-center">
           
-          {/* Decorative Border - sankalp2.png (only top and bottom borders visible) */}
+          {/* Decorative Border - sankalp2.png - Now properly sized for mobile */}
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-40' : 'opacity-0'}`}>
-            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <div className="relative flex items-center justify-center">
               <img 
                 src="/src/assets/sankalp2.png"
                 alt="Decorative Border"
-                className="min-w-full min-h-full object-cover"
+                className="w-[400px] h-[400px] md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] object-contain"
                 style={{ 
                   filter: 'drop-shadow(0 0 30px rgba(217, 119, 6, 0.4)) brightness(1.2) contrast(1.3)',
                   mixBlendMode: 'lighten',
@@ -125,7 +125,7 @@ const Background = () => {
             </div>
           </div>
 
-          {/* Main Chakra Logo - sankalp.png (center circular part) */}
+          {/* Main Chakra Logo */}
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${logoLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <img 
               src="/src/assets/sankalp.png"
