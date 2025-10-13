@@ -84,8 +84,8 @@ const Explore = () => {
       <div className="min-h-screen bg-black flex flex-col items-center justify-center relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         {/* Spinner */}
@@ -105,9 +105,9 @@ const Explore = () => {
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient orbs */}
-        <div className="absolute top-32 -left-48 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 -right-48 w-96 h-96 bg-yellow-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-32 -left-24 md:-left-48 w-48 h-48 md:w-96 md:h-96 bg-orange-500/15 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-32 -right-24 md:-right-48 w-48 h-48 md:w-96 md:h-96 bg-yellow-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-[500px] md:h-[500px] bg-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
 
         {/* Floating particles */}
         <div className="absolute inset-0">
@@ -144,15 +144,15 @@ const Explore = () => {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Enhanced Title Section */}
-        <div className="text-center mb-16 md:mb-20 animate-fade-in-down">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20 animate-fade-in-down">
           <div className="relative inline-block">
             {/* Glow effect */}
-            <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 opacity-30 animate-pulse" />
+            <div className="absolute inset-0 blur-2xl md:blur-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 opacity-30 animate-pulse" />
 
             {/* Main title with shimmer effect */}
-            <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent tracking-tight leading-tight mb-4"
+            <h1 className="relative text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent tracking-tight leading-tight mb-4"
               style={{
                 backgroundSize: '200% auto',
                 animation: 'gradient-shift 3s ease-in-out infinite'
@@ -171,37 +171,37 @@ const Explore = () => {
             </h1>
 
             {/* Decorative elements */}
-            <div className="flex justify-center items-center gap-3 mt-6">
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
+            <div className="flex justify-center items-center gap-2 md:gap-3 mt-4 md:mt-6">
+              <div className="w-8 md:w-16 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
               <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(251,146,60,0.6)]" />
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
+              <div className="w-8 md:w-16 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" />
             </div>
           </div>
 
-          <p className="mt-6 text-gray-400 text-lg md:text-xl font-light tracking-wide">
+          <p className="mt-4 md:mt-6 text-gray-400 text-base md:text-lg lg:text-xl font-light tracking-wide px-4">
             Dive into endless possibilities
           </p>
 
           {/* Scroll indicator */}
-          <div className="mt-8 flex justify-center opacity-50 hover:opacity-100 transition-opacity">
-            <div className="flex items-center gap-2 text-sm text-orange-400 animate-pulse">
+          <div className="mt-6 md:mt-8 flex justify-center opacity-50 hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-2 text-xs md:text-sm text-orange-400 animate-pulse">
               <span>Scroll to explore</span>
-              <span className="text-xl">→</span>
+              <span className="text-lg md:text-xl">→</span>
             </div>
           </div>
         </div>
 
         {/* Scrolling Container with enhanced cards */}
         <div className="relative">
-          <div className="overflow-visible py-12">
-            <div className="flex gap-6 animate-scroll hover:animation-paused">
+          <div className="overflow-visible py-8 md:py-12">
+            <div className="flex gap-3 sm:gap-4 md:gap-6 animate-scroll hover:animation-paused">
               {duplicatedCategories.map((category, index) => (
                 <div
                   key={index}
-                  className={`group relative flex-shrink-0 rounded-3xl overflow-visible cursor-pointer transform transition-all duration-700 ${
+                  className={`group relative flex-shrink-0 rounded-2xl md:rounded-3xl overflow-visible cursor-pointer transform transition-all duration-700 ${
                     category.isLarge
-                      ? 'w-[600px] h-[450px] hover:scale-110 hover:-translate-y-6'
-                      : 'w-[250px] h-[450px] hover:w-[500px] hover:scale-105 hover:-translate-y-6'
+                      ? 'w-[280px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[350px] sm:h-[400px] md:h-[450px] hover:scale-105 md:hover:scale-110 hover:-translate-y-3 md:hover:-translate-y-6 active:scale-105 active:-translate-y-3'
+                      : 'w-[180px] sm:w-[220px] md:w-[250px] h-[350px] sm:h-[400px] md:h-[450px] hover:w-[280px] sm:hover:w-[350px] md:hover:w-[500px] hover:scale-105 hover:-translate-y-3 md:hover:-translate-y-6 active:w-[280px] active:scale-105 active:-translate-y-3'
                   }`}
                   style={{
                     transformStyle: 'preserve-3d',
@@ -332,20 +332,20 @@ const Explore = () => {
                     </div>
 
                     {/* Icon badge */}
-                    <div className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
-                      <div className="bg-gradient-to-br from-orange-500 to-yellow-500 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-2xl animate-float">
+                    <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
+                      <div className="bg-gradient-to-br from-orange-500 to-yellow-500 w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-2xl animate-float">
                         {category.icon}
                       </div>
                     </div>
 
                     {/* Enhanced corner accents with energy lines */}
-                    <div className="absolute top-0 left-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                      <div className="absolute top-4 left-4 w-full h-0.5 bg-gradient-to-r from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" />
-                      <div className="absolute top-4 left-4 w-0.5 h-full bg-gradient-to-b from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" />
+                    <div className="absolute top-0 left-0 w-12 h-12 md:w-20 md:h-20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                      <div className="absolute top-2 left-2 md:top-4 md:left-4 w-full h-0.5 bg-gradient-to-r from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" />
+                      <div className="absolute top-2 left-2 md:top-4 md:left-4 w-0.5 h-full bg-gradient-to-b from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" />
                     </div>
-                    <div className="absolute bottom-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                      <div className="absolute bottom-4 right-4 w-full h-0.5 bg-gradient-to-l from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" style={{ animationDelay: '0.3s' }} />
-                      <div className="absolute bottom-4 right-4 w-0.5 h-full bg-gradient-to-t from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" style={{ animationDelay: '0.3s' }} />
+                    <div className="absolute bottom-0 right-0 w-12 h-12 md:w-20 md:h-20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                      <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-full h-0.5 bg-gradient-to-l from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-0.5 h-full bg-gradient-to-t from-orange-400 via-yellow-400 to-transparent animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]" style={{ animationDelay: '0.3s' }} />
                     </div>
 
                     {/* Pulsing energy border effect */}
@@ -370,13 +370,13 @@ const Explore = () => {
                     </div>
 
                     {/* Content Container */}
-                    <div className={`absolute inset-0 flex items-center justify-center p-8 z-10`}>
+                    <div className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-8 z-10`}>
                       <div className={`text-center transition-all duration-700 -rotate-90 group-hover:rotate-0`}>
                         {/* Title with letter animation */}
-                        <h2 className={`font-black text-white tracking-wider mb-2 transition-all duration-700 ${
+                        <h2 className={`font-black text-white tracking-wider mb-1 md:mb-2 transition-all duration-700 ${
                           category.isLarge
-                            ? 'text-6xl md:text-7xl lg:text-8xl'
-                            : 'text-3xl md:text-4xl lg:text-5xl whitespace-nowrap group-hover:text-5xl md:group-hover:text-6xl'
+                            ? 'text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl'
+                            : 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl whitespace-nowrap group-hover:text-3xl sm:group-hover:text-4xl md:group-hover:text-5xl lg:group-hover:text-6xl'
                         }`}>
                           {category.title.split('').map((letter, i) => (
                             <span
@@ -394,21 +394,21 @@ const Explore = () => {
 
                         {/* Description - show on hover */}
                         <p className={`text-orange-400 font-semibold tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-700 ${
-                          category.isLarge ? 'text-lg md:text-xl' : 'text-base md:text-lg'
+                          category.isLarge ? 'text-sm sm:text-base md:text-lg lg:text-xl' : 'text-xs sm:text-sm md:text-base lg:text-lg'
                         }`}>
                           {category.description}
                         </p>
 
                         {/* Decorative line on hover */}
-                        <div className="mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
-                          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
+                        <div className="mt-2 md:mt-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
+                          <div className="w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
                         </div>
 
                         {/* Additional info for expanded small cards */}
                         {!category.isLarge && (
-                          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
-                            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                              <span className="text-2xl">{category.icon}</span>
+                          <div className="mt-2 md:mt-4 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">
+                            <div className="flex items-center justify-center gap-1.5 md:gap-2 text-xs sm:text-sm text-gray-400">
+                              <span className="text-lg md:text-2xl">{category.icon}</span>
                               <span className="tracking-wide">Explore Now</span>
                             </div>
                           </div>
@@ -433,18 +433,18 @@ const Explore = () => {
         </div>
 
         {/* Bottom decoration */}
-        <div className="mt-20 flex flex-col items-center gap-6 animate-fade-in-up">
-          <div className="flex items-center gap-3">
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
-            <div className="flex gap-2">
-              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+        <div className="mt-12 md:mt-16 lg:mt-20 flex flex-col items-center gap-4 md:gap-6 animate-fade-in-up">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
+            <div className="flex gap-1.5 md:gap-2">
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-orange-500 rounded-full animate-pulse" />
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+              <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
             </div>
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
           </div>
 
-          <p className="text-gray-500 text-sm font-light tracking-widest uppercase">
+          <p className="text-gray-500 text-xs md:text-sm font-light tracking-widest uppercase px-4">
             Discover Your Passion
           </p>
         </div>
@@ -501,6 +501,38 @@ const Explore = () => {
           .animate-scroll,
           [style*="animation"] {
             animation: none !important;
+          }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+          /* Enable active state for touch devices */
+          .group:active .group-hover\\:opacity-100 {
+            opacity: 1;
+          }
+
+          .group:active .group-hover\\:scale-100 {
+            transform: scale(1);
+          }
+
+          .group:active .group-hover\\:rotate-0 {
+            transform: rotate(0deg);
+          }
+
+          .group:active .group-hover\\:translate-y-0 {
+            transform: translateY(0);
+          }
+
+          /* Reduce transform intensity on mobile for better UX */
+          .group:active {
+            transform: scale(1.02) translateY(-5px) !important;
+          }
+        }
+
+        /* Improve scrolling on mobile */
+        @media (max-width: 768px) {
+          .animate-scroll {
+            animation-duration: 60s;
           }
         }
       `}</style>
